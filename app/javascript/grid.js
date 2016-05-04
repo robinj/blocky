@@ -46,13 +46,43 @@ export class BlockGrid {
                 colEl.appendChild(blockEl);
             }
         }
-
         return this;
     }
 
     blockClicked (e, block) {
         console.log(e, block);
+        
+        this.getNeighbourTiles(block.x, block.y);
+        
+        this.render();
     }
+    
+    getNeighbourTiles (x ,y) {
+        let neighbours = [];
+        
+        // To the left
+        if (x > 0) {
+            neighbours.push(this.grid[x - 1][y]);
+        }
+        
+        // To the right
+        if(x + 1 < MAX_X) {
+            neighbours.push(this.grid[x + 1][y]);
+        }
+        
+        // Down below
+        if (y > 0) {
+            neighbours.push(this.grid[x][y - 1]);
+        }
+        
+        // Up above
+       if(y + 1 < MAX_Y) {
+            neighbours.push(this.grid[x][y + 1]);
+        }
+        
+        return neighbours;
+    }
+    
 }
 
 window.addEventListener('DOMContentLoaded', () => new BlockGrid().render());
