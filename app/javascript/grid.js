@@ -65,18 +65,8 @@ export class BlockGrid {
         }
         
         neighbours = this.getSameColouredNeighbours(block.x, block.y, block.colour);
-        neighbours.sort(this.sortBlocks);
         
-        while(neighbours.length > 0) {
-            let currentBlock = neighbours.shift();
-            
-            this.grid[currentBlock.x].splice(currentBlock.y, 1);
-            
-            for(var i = currentBlock.y ; i < MAX_Y - 1; i ++) {
-                this.grid[currentBlock.x][i].y--;
-            };
-            this.grid[currentBlock.x].push(new Block(currentBlock.x, 9, true));
-        }
+        this.deleteBlocks(neighbours);
 
         this.render();
         
@@ -85,7 +75,31 @@ export class BlockGrid {
 
     }
     
-    sortBlocks(blockA, blockB) {
+    /**
+     * Deletes the specified blocks from the grid
+     * @param {Block[]} blocks - an array containing the blocks to delete from the grid
+     */
+    deleteBlocks(blocks) {
+        blocks.sort(this.compareBlocks);
+
+        while(blocks.length > 0) {
+            let currentBlock = blocks.shift();
+            
+            this.grid[currentBlock.x].splice(currentBlock.y, 1);
+            
+            for(var i = currentBlock.y ; i < MAX_Y - 1; i ++) {
+                this.grid[currentBlock.x][i].y--;
+            };
+            this.grid[currentBlock.x].push(new Block(currentBlock.x, 9, true));
+        }
+    }
+    
+    /**
+     * A comparison method for blocks, used for array sorting. 
+     * @param {Block} blockA - the first block to compare 
+     * @param {Block} blockB - the second block to compare
+     */
+    compareBlocks(blockA, blockB) {
         return (blockA.x * MAX_X + blockA.y) - (blockB.x * MAX_X + blockB.y);
     };
 
@@ -94,6 +108,11 @@ export class BlockGrid {
      * which returns the "pixels" that have just been coloured. There is a risk 
      * that the max call stack will be reached, if the grid is ridiculously large.
      * Given the use case, I doubt that we will see that limit being reached.
+     * 
+     * @param {number} x - the x value of the block to find neighbours for 
+     * @param {number} y - the y value of the block to find neighbours for
+     * @param {string} colour - the for the block to match
+     * @returns {Blocks[]} - an array containing the neighbouring blocks 
      */
     getSameColouredNeighbours(x, y, colour) {
         var neighbours = [];
