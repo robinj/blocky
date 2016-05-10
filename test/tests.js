@@ -60,7 +60,7 @@ describe('BlockGrid', () => {
             });
 
             it('should return nine neighbours which have been coloured grey', function () {
-                assert.equal(blockGrid.getSameColouredNeighbours(1, 1, 'red').length, 9, 'top edge returns three');
+                assert.equal(blockGrid.getAndMarkSameColouredNeighbours(1, 1, 'red').length, 9, 'top edge returns three');
 
                 for (var i = 0; i < 3; i++) {
                     for (var j = 0; j < 3; j++) {
@@ -70,7 +70,7 @@ describe('BlockGrid', () => {
             });
 
             it('should not colour any of the other nine neighbours grey', function () {
-                blockGrid.getSameColouredNeighbours(1, 1, 'red');
+                blockGrid.getAndMarkSameColouredNeighbours(1, 1, 'red');
 
                 for (var i = 3; i < 9; i++) {
                     for (var j = 3; j < 9; j++) {

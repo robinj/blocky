@@ -64,7 +64,7 @@ export class BlockGrid {
             return;
         }
         
-        neighbours = this.getSameColouredNeighbours(block.x, block.y, block.colour);
+        neighbours = this.getAndMarkSameColouredNeighbours(block.x, block.y, block.colour);
         
         this.deleteBlocks(neighbours);
 
@@ -117,7 +117,7 @@ export class BlockGrid {
      * @param {string} colour - the for the block to match
      * @returns {Blocks[]} - an array containing the neighbouring blocks 
      */
-    getSameColouredNeighbours(x, y, colour) {
+    getAndMarkSameColouredNeighbours(x, y, colour) {
         var neighbours = [];
         
         if(this.grid[x][y].colour !== colour) {
@@ -129,22 +129,22 @@ export class BlockGrid {
         
         // West
         if(x > 0) {
-            Array.prototype.push.apply(neighbours, this.getSameColouredNeighbours(x - 1, y, colour));
+            Array.prototype.push.apply(neighbours, this.getAndMarkSameColouredNeighbours(x - 1, y, colour));
         }
         
         // South
         if(y > 0) {
-            Array.prototype.push.apply(neighbours ,this.getSameColouredNeighbours(x, y - 1, colour));
+            Array.prototype.push.apply(neighbours ,this.getAndMarkSameColouredNeighbours(x, y - 1, colour));
         }
         
         // East
         if(x < MAX_X - 1) {
-            Array.prototype.push.apply(neighbours, this.getSameColouredNeighbours(x + 1, y, colour));
+            Array.prototype.push.apply(neighbours, this.getAndMarkSameColouredNeighbours(x + 1, y, colour));
         }
         
         // North
         if (y < MAX_Y -1) {
-            Array.prototype.push.apply(neighbours, this.getSameColouredNeighbours(x, y + 1, colour));
+            Array.prototype.push.apply(neighbours, this.getAndMarkSameColouredNeighbours(x, y + 1, colour));
         }
 
         return neighbours;
