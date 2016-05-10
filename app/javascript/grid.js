@@ -90,7 +90,7 @@ export class BlockGrid {
             for(var i = currentBlock.y ; i < MAX_Y - 1; i ++) {
                 this.grid[currentBlock.x][i].y--;
             };
-            this.grid[currentBlock.x].push(new Block(currentBlock.x, 9, true));
+            this.grid[currentBlock.x].push(new Block(currentBlock.x, MAX_Y - 1, true));
         }
     }
     
