@@ -130,22 +130,22 @@ export class BlockGrid {
         // West
         if(x > 0) {
             Array.prototype.push.apply(neighbours, this.getSameColouredNeighbours(x - 1, y, colour));
-        };
+        }
         
         // South
         if(y > 0) {
             Array.prototype.push.apply(neighbours ,this.getSameColouredNeighbours(x, y - 1, colour));
-        };
+        }
         
         // East
         if(x < MAX_X - 1) {
             Array.prototype.push.apply(neighbours, this.getSameColouredNeighbours(x + 1, y, colour));
-        };
+        }
         
         // North
         if (y < MAX_Y -1) {
             Array.prototype.push.apply(neighbours, this.getSameColouredNeighbours(x, y + 1, colour));
-        };
+        }
 
         return neighbours;
     }
