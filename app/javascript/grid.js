@@ -109,6 +109,9 @@ export class BlockGrid {
      * that the max call stack will be reached, if the grid is ridiculously large.
      * Given the use case, I doubt that we will see that limit being reached.
      * 
+     * I agree that this is a method with side effects - this is something that
+     * I would sort out if I had more time.
+     * 
      * @param {number} x - the x value of the block to find neighbours for 
      * @param {number} y - the y value of the block to find neighbours for
      * @param {string} colour - the for the block to match
