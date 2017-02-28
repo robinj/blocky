@@ -14,9 +14,9 @@ E.g.,
 
 Given:
 
-![Initial state](https://trottski.s3.amazonaws.com/snaps/initial.jpg)
+![Initial state](https://raw.githubusercontent.com/robinj/blocky/master/images/initial.jpg)
 
 After clicking one of the bottom right blue boxes it should then look
 like this:
 
-![state 2](https://trottski.s3.amazonaws.com/snaps/stage2.jpg)
+![state 2](https://raw.githubusercontent.com/robinj/blocky/master/images/stage2.jpg)
