@@ -6,9 +6,9 @@ $ npm start
 $ open http://localhost:9100/
 ```
 
-#### Task:
+#### Explanation:
 
-Implement blockClicked to remove (or hide) all blocks of the same colour that are connected to the target element then allow the blocks above the removed to fall down (similar to Tetris but you should click a block to have connected blocks removed).
+When a block is clicked, all blocks of the same colour that are connected to the target element then allow the blocks above the removed to fall down (similar to Tetris but you should click a block to have connected blocks removed). I achieved this by implementing the flood fill algorithim and a few data structures in JavaScript. 
 
 E.g.,
 
